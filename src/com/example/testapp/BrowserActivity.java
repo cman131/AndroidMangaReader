@@ -18,6 +18,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+/**
+ * the file browser activity to select what folder your manga is stored in
+ * @author Conor
+ *
+ */
+
 public class BrowserActivity extends Activity {
 
 	private String currentPath="/";
@@ -27,11 +33,14 @@ public class BrowserActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_browser);
-		// Show the Up button in the action bar.
 		setupActionBar();
 		getFiles();
 	}
-	
+
+	/**
+	 * Navigate up the file path to a prior directory
+	 * @param view - the current view
+	 */
 	public void up(View view){
 		String[] temp = currentPath.split("/");
 		String newString = "";
@@ -45,6 +54,10 @@ public class BrowserActivity extends Activity {
 		getFiles();
 	}
 	
+	/**
+	 * Navigate down the file path into a lower directory
+	 * @param view - The current view
+	 */
 	public void down(View view){
 		Spinner listy = ((Spinner)findViewById(R.id.spinner1));
 		if (items.size()!=0){
@@ -53,6 +66,11 @@ public class BrowserActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * submit your choice of manga directory
+	 * and save this choice for future use
+	 * @param view - the current view
+	 */
 	public void submit(View view){
 		Spinner listy = ((Spinner)findViewById(R.id.spinner1));
 		if (items.size()!=0){
@@ -107,7 +125,10 @@ public class BrowserActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-
+	/**
+	 * gets the current list of files from the current file path
+	 * as long as it is a directory
+	 */
 	private void getFiles(){
 		File[] files = new File(currentPath).listFiles();
     	items.clear();

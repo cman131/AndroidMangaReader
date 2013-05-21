@@ -17,6 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+/**
+ * the main activity where the user can navigate through the manga they are reading
+ * @author Conor
+ *
+ */
 public class MainActivity extends Activity {
 	
 	private ArrayList<String> listy = new ArrayList<String>();
@@ -119,15 +124,25 @@ public class MainActivity extends Activity {
      }
     }
 	
+	/**
+	 * lets the user open a new manga from the menu
+	 * @param view - current view
+	 */
 	public void open(View view){
 		open();
 	}
 	
+	/**
+	 * lets the user open a new manga from the button
+	 */
 	public void open(){
 		Intent intent = new Intent(this, OpenActivity.class);
 		startActivityForResult(intent, 475765457);
 	}
 	
+	/**
+	 * updates the current page and pageset to the current chapter and manga
+	 */
 	private void update(){
 		File[] chapy = ((new File(path)).listFiles());
 		ArrayList<String> temp = new ArrayList<String>();
@@ -148,6 +163,9 @@ public class MainActivity extends Activity {
 		setDatImage();
 	}
 	
+	/**
+	 * switches chapters once an end or beginning is reached
+	 */
 	private void chapChange(){
 		listy.clear();
 		File[] chapsy = (new File(path+"/"+chaps.get(curChap)).listFiles());
@@ -168,6 +186,9 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * sets the current bitmap to be displayed in the imageview
+	 */
 	private void setDatImage(){
 		ImageView image = (ImageView) findViewById(R.id.imageView1);
 		if(listy.size()!=0){
@@ -182,10 +203,17 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * lets the user switch to the next page image using the menu option
+	 * @param view - the current view
+	 */
 	public void nextImage(View view){
 		nextImage();
 	}
 	
+	/**
+	 * lets the user switch to the next page image using the button
+	 */
 	public void nextImage(){
 		if (currentIndex+1<listy.size() && currentIndex+1>=0){
 			currentIndex+=1;
@@ -199,10 +227,17 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * lets the user switch to the previous page using the menu option
+	 * @param view - the current view
+	 */
 	public void previousImage(View view){
 		previousImage();
 	}
 	
+	/**
+	 * lets the user switch to the previous page using the button
+	 */
 	public void previousImage(){
 		if (currentIndex-1>=0 && currentIndex-1<listy.size()){
 			currentIndex-=1;

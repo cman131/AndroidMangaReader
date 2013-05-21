@@ -18,6 +18,12 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 
+/**
+ * allows the user to select the manga to read
+ * @author Conor
+ *
+ */
+
 public class OpenActivity extends Activity {
 	
 	private ArrayAdapter<String> choice;
@@ -44,6 +50,9 @@ public class OpenActivity extends Activity {
 		populate();
 	}
 
+	/**
+	 * fills the spinner with the current manga folders in the selected manga directory
+	 */
 	public void populate(){
 		ArrayList<String> temp = new ArrayList<String>();
 		for(File i : new File(path).listFiles()){
@@ -57,6 +66,11 @@ public class OpenActivity extends Activity {
 		spinner.setSelection(0);
 	}
 	
+	/**
+	 * converts an inputstream to a string
+	 * @param is - the inputstream to be converted
+	 * @return the resulting string
+	 */
 	public static String streamToString(InputStream is) {
 	    java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
 	    return s.hasNext() ? s.next() : "";
@@ -108,6 +122,10 @@ public class OpenActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	/**
+	 * finishes the activity and tells the mainview which manga to load
+	 * @param view - the current view
+	 */
 	public void send(View view){
 		Intent main = new Intent();
 		main.putExtra("ret", (String)((Spinner)findViewById(R.id.spinner1)).getSelectedItem());
@@ -115,6 +133,10 @@ public class OpenActivity extends Activity {
 		finish();
 	}
 
+	/**
+	 * opens the browser activity to let the user select a different manga directory
+	 * @param view - the current view
+	 */
 	public void changeDir(View view){
 		Intent intent = new Intent(this, BrowserActivity.class);
 		intent.putExtra("pass", path);

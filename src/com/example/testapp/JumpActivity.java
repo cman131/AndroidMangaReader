@@ -17,6 +17,13 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 
+/**
+ * an activity that exists to let the user
+ * jump to the chapter and page they wish to be at
+ * @author Conor
+ *
+ */
+
 public class JumpActivity extends Activity {
 
 	private int page = 0;
@@ -56,6 +63,9 @@ public class JumpActivity extends Activity {
 		spinner.setOnItemSelectedListener(new SpinnerActivity());
 	}
 
+	/**
+	 * populates the pages spinner with the pages in the current chapter
+	 */
 	private void fillPages() {
 		File[] chapsy = (new File(path+"/"+((Spinner)findViewById(R.id.spinner2)).getSelectedItem()).listFiles());
 		ArrayList<String> temp = new ArrayList<String>();
@@ -70,6 +80,12 @@ public class JumpActivity extends Activity {
 		spinner.setSelection(page);
 	}
 	
+	/**
+	 * listens to see if the chapter is changed, so that
+	 * the pages can be updated accordingly
+	 * @author Conor
+	 *
+	 */
 	public class SpinnerActivity implements OnItemSelectedListener {
 
 		@Override
@@ -109,6 +125,11 @@ public class JumpActivity extends Activity {
 		return true;
 	}
 	
+	/**
+	 * submits the jump choice
+	 * returning to the main activity at the specified page and chapter
+	 * @param view - the current view
+	 */
 	public void submit(View view){
 		Spinner spin = (Spinner)findViewById(R.id.spinner2);
 		Spinner spin2 = (Spinner)findViewById(R.id.spinner1);
