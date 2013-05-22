@@ -9,6 +9,7 @@ R2 Plans
  - Bookmarking
  - Zooming in on images
  - Slide View for moving between images
+ - download or possibly "stream" from server
 
 Instructions on Use
 ===================
